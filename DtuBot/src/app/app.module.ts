@@ -8,18 +8,21 @@ import {httpInterceptorProviders} from './login/auth/auth-http.interceptor';
 import {AdminManagerService} from './service/admin-manager.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AppRoutingModule} from './app-routing.module';
+import { ReportNonAnswerComponent } from './report-non-answer/report-non-answer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminManagerComponent,
-
+    ReportNonAnswerComponent,
   ],
   imports: [
     BrowserModule,
     LoginModule,
     HttpClientModule,
     ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [httpInterceptorProviders, AdminManagerService],
   bootstrap: [AppComponent]

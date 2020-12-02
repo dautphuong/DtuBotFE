@@ -1,1 +1,25 @@
-<app-admin-manager></app-admin-manager>
+<div id='body'>
+  <div id='container'>
+    <div class="wrapper">
+      <div id="Header">
+        <div class="logout" (click)="logOut()">
+          Đăng xuất
+        </div>
+        <div class="Database">DATABASE</div>
+        <ul class='nav'>
+          <li>
+            <a [routerLink]="['']">Quản lý câu hỏi</a>
+          </li>
+          <li>
+            <a title="Báo cáo người dùng">Báo cáo người dùng</a>
+          </li>
+          <li>
+            <a  [routerLink]="['non-answer']">Câu hỏi chưa trả lời</a>
+          </li>
+        </ul>
+      </div>
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
+</div>

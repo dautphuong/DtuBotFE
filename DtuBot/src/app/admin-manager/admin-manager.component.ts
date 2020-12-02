@@ -35,13 +35,7 @@ export class AdminManagerComponent implements OnInit {
     });
   }
 
-  logOut(): void {
-    if (window.confirm('Bạn muốn đăng xuất tài khoản không ?')) {
-      this.jwt.logOut();
-      window.location.reload();
-    }
-    this.jwt.saveUsername(window.localStorage.getItem('usernameRemember'));
-  }
+
 
   // tslint:disable-next-line:typedef
   onSubmitTag() {

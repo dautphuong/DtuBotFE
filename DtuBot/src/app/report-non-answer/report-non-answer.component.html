@@ -1,0 +1,25 @@
+<div class="container-fluid border-3">
+  <table class="table table-striped table-sm mt-3 border" style="font-size: 12px;">
+    <thead>
+    <tr>
+      <th>STT</th>
+      <th>Thời gian</th>
+      <th>Câu hỏi chưa trả lời</th>
+      <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let nonAnswer of listNonAnswer">
+      <tr>
+        <td>{{nonAnswer.id}}</td>
+        <td>{{nonAnswer.timeReport}}</td>
+        <td>{{nonAnswer.question}}</td>
+        <td>
+          <button class="btn btn-sm btn-warning mr-3">Xóa</button>
+          <button class="btn btn-sm btn-warning mr-3">Trả lời</button>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,20 @@
+Content {
+  position: relative;
+  display: block;
+  width: auto;
+  background: white;
+  height: 1000px;
+  border: 1px solid #7e000c;
+}
+
+button {
+  color: white;
+  background: #7e000c;
+  color: #fff;
+  font-size: 11px;
+
+}
+
+body1 {
+  float: center;
+}
