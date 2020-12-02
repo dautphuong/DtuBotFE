@@ -14,4 +14,8 @@ export class ReportNonAnswerService {
   findAll(): Observable<NonAnswer[]> {
     return this.httpClient.get<NonAnswer[]>(this.URL + '/list-nonAnswer');
   }
+
+  findReport(): Observable<NonAnswer[]> {
+    return this.httpClient.get<NonAnswer[]>(this.URL + '/list-nonAnswer-report');
+  }
 }
