@@ -3,7 +3,6 @@ import {AdminManagerService} from '../service/admin-manager.service';
 import {Intents} from '../model/intents';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {JwtService} from '../login/services/jwt.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-manager',
@@ -21,7 +20,6 @@ export class AdminManagerComponent implements OnInit {
   constructor(
     private adminManagerService: AdminManagerService,
     private jwt: JwtService,
-    private router: Router,
     private fb: FormBuilder
   ) {
     this.tagForm = this.fb.group({

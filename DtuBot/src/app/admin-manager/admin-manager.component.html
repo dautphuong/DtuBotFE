@@ -25,11 +25,11 @@
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern" [disabled]="isTag">+ Thêm câu
             hỏi
           </button>
-          <a class="cauhoi mt-3" *ngFor="let pattern of intent.patterns">
+          <span class="cauhoi mt-3" *ngFor="let pattern of intent.patterns">
             <br><br>
             <span>{{pattern}}</span>
             <i class="fa fa-close float-right" (click)="deletePattern(pattern)"></i>
-          </a>
+          </span>
 
         </div>
       </td>
@@ -38,11 +38,11 @@
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag">+ Thêm câu trả
             lời
           </button>
-          <a class="cautraloi mt-3" *ngFor="let response of intent.responses">
+          <span class="cautraloi mt-3" *ngFor="let response of intent.responses">
             <br><br>
             <span>{{response}}</span>
             <i class="fa fa-close float-right" (click)="deleteReponse(response)"></i>
-          </a>
+          </span>
         </div>
       </td>
     </tr>

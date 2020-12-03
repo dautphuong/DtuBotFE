@@ -9,9 +9,10 @@ import {AdminManagerService} from './service/admin-manager.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
-import { ReportNonAnswerComponent } from './report-non-answer/report-non-answer.component';
-import { ReportComponent } from './report/report.component';
-import { HistoryComponent } from './history/history.component';
+import {ReportNonAnswerComponent} from './report-non-answer/report-non-answer.component';
+import {ReportComponent} from './report/report.component';
+import {HistoryComponent} from './history/history.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { HistoryComponent } from './history/history.component';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [httpInterceptorProviders, AdminManagerService],
+  providers: [httpInterceptorProviders, AdminManagerService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
