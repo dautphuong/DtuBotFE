@@ -26,7 +26,6 @@ export class ReportNonAnswerComponent implements OnInit {
               private datePipe: DatePipe) {
     this.nonAnswrService.findAll().subscribe(next => {
       this.listNonAnswer = next;
-      console.log(this.listNonAnswer);
     });
     this.intentForm = this.fb.group({
       tag: ['', [Validators.required]],

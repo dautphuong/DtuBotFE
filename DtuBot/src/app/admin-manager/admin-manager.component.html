@@ -9,20 +9,21 @@
     </thead>
     <tbody>
     <tr class="body">
-      <td class="columm">
+      <td class="columm" style="word-wrap: break-word;max-width: 200px">
         <div class="button1">
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddTag">+ Thêm từ khóa
           </button>
           <a class="key mt-3" *ngFor="let intent of listIntent">
             <br><br>
-            <span (click)="onClick(intent.tag)">{{intent.tag}}</span>
+            <span  (click)="onClick(intent.tag)">{{intent.tag}}</span>
             <i class="fa fa-close float-right" (click)="deleteTag(intent.tag)"></i>
           </a>
         </div>
       </td>
       <td class="columm">
         <div class="button1 ">
-          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern" [disabled]="isTag">+ Thêm câu
+          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern" [disabled]="isTag">+
+            Thêm câu
             hỏi
           </button>
           <span class="cauhoi mt-3" *ngFor="let pattern of intent.patterns">
@@ -35,7 +36,8 @@
       </td>
       <td class="columm">
         <div class="button1">
-          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag">+ Thêm câu trả
+          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag">+
+            Thêm câu trả
             lời
           </button>
           <span class="cautraloi mt-3" *ngFor="let response of intent.responses">
