@@ -1,4 +1,3 @@
-
 <div class="container-fluid border-3">
   <table class="table table-striped table-sm">
     <thead>
@@ -17,32 +16,32 @@
           <a class="key mt-3" *ngFor="let intent of listIntent">
             <br><br>
             <span (click)="onClick(intent.tag)">{{intent.tag}}</span>
-            <i class="fa fa-close float-right"></i>
+            <i class="fa fa-close float-right" (click)="deleteTag(intent.tag)"></i>
           </a>
         </div>
       </td>
       <td class="columm">
         <div class="button1 ">
-          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern">+ Thêm câu
+          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern" [disabled]="isTag">+ Thêm câu
             hỏi
           </button>
           <a class="cauhoi mt-3" *ngFor="let pattern of intent.patterns">
             <br><br>
             <span>{{pattern}}</span>
-            <i class="fa fa-close float-right"></i>
+            <i class="fa fa-close float-right" (click)="deletePattern(pattern)"></i>
           </a>
 
         </div>
       </td>
       <td class="columm">
         <div class="button1">
-          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse">+ Thêm câu trả
+          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag">+ Thêm câu trả
             lời
           </button>
           <a class="cautraloi mt-3" *ngFor="let response of intent.responses">
             <br><br>
             <span>{{response}}</span>
-            <i class="fa fa-close float-right"></i>
+            <i class="fa fa-close float-right" (click)="deleteReponse(response)"></i>
           </a>
         </div>
       </td>
@@ -52,82 +51,85 @@
 </div>
 
 
-<!--&lt;!&ndash;hiện màn hình thêm từ khóa&ndash;&gt;-->
-<!--<div class="modal fade" id="layoutAddTag" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"-->
-<!--     aria-hidden="true">-->
-<!--  <div class="modal-dialog modal-dialog-centered" role="document">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <h5 class="modal-title" id="exampleModalLongTitle">Thêm tag</h5>-->
-<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--          <span aria-hidden="true">&times;</span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <div class="modal-body">-->
-<!--        <form accept-charset="UTF-8" role="form" [formGroup]="tagForm" (ngSubmit)="onSubmitTag()">-->
-<!--          <fieldset>-->
-<!--            <div>-->
-<!--              thêm từ khóa-->
-<!--            </div>-->
-<!--            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu">-->
-<!--          </fieldset>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<!--hiện màn hình thêm từ khóa-->
+<div class="modal fade" id="layoutAddTag" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Thêm tag mới</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form accept-charset="UTF-8" role="form" [formGroup]="tagForm" (ngSubmit)="onSubmitTag()">
+          <fieldset>
+            <div>
+              <input class="form-control" type="text" formControlName="tag">
+            </div>
+            <br>
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu">
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-<!--&lt;!&ndash;hiện màn hình thêm câu hỏi&ndash;&gt;-->
-<!--<div class="modal fade" id="layoutAddPattern" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"-->
-<!--     aria-hidden="true">-->
-<!--  <div class="modal-dialog modal-dialog-centered" role="document">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <h5 class="modal-title" id="exampleModalLongTitle1">Thêm Pattern</h5>-->
-<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--          <span aria-hidden="true">&times;</span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <div class="modal-body">-->
-<!--        <form accept-charset="UTF-8" role="form" [formGroup]="patternForm" (ngSubmit)="onSubmitPattern()">-->
+<!--hiện màn hình thêm câu hỏi-->
+<div class="modal fade" id="layoutAddPattern" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle1">Thêm Pattern tag '{{intent.tag}}'</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form accept-charset="UTF-8" role="form" [formGroup]="patternForm" (ngSubmit)="onSubmitPattern()">
 
-<!--          <fieldset>-->
-<!--            <div>-->
-<!--              thêm từ khóa-->
-<!--            </div>-->
-<!--            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu">-->
+          <fieldset>
+            <div>
+              <input class="form-control" type="text" formControlName="pattern">
+            </div>
+            <br>
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu">
 
-<!--          </fieldset>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-<!--&lt;!&ndash;hiện màn hình thêm câu trả lời&ndash;&gt;-->
-<!--<div class="modal fade" id="layoutAddResponse" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"-->
-<!--     aria-hidden="true">-->
-<!--  <div class="modal-dialog modal-dialog-centered" role="document">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <h5 class="modal-title" id="exampleModalLongTitle2">Thêm Response</h5>-->
-<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--          <span aria-hidden="true">&times;</span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <div class="modal-body">-->
-<!--        <form accept-charset="UTF-8" role="form" [formGroup]="responseForm" (ngSubmit)="onSubmitResponse()">-->
-<!--          <fieldset>-->
-<!--            <div>-->
-<!--              thêm từ khóa-->
-<!--            </div>-->
-<!--            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu">-->
-<!--          </fieldset>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<!--hiện màn hình thêm câu trả lời-->
+<div class="modal fade" id="layoutAddResponse" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle2">Thêm Response tag '{{intent.tag}}'</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form accept-charset="UTF-8" role="form" [formGroup]="responseForm" (ngSubmit)="onSubmitResponse()">
+          <fieldset>
+            <div>
+              <input class="form-control" type="text" formControlName="response">
+            </div>
+            <br>
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu">
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 

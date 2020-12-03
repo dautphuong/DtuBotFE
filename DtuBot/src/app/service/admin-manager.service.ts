@@ -19,4 +19,12 @@ export class AdminManagerService {
   findTag(tag: string): Observable<Intents> {
     return this.httpClient.get<Intents>(this.URL + '/get-tag/' + tag);
   }
+
+  save(intents: Intents): Observable<Intents> {
+    return this.httpClient.post<Intents>(this.URL + '/save-tag', intents);
+  }
+
+  delete(id: string): Observable<any>{
+    return this.httpClient.delete<any>(this.URL + '/delete-tag/' + id);
+  }
 }
