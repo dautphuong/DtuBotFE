@@ -20,6 +20,7 @@ export class HistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onClickReport();
   }
 
   // tslint:disable-next-line:typedef

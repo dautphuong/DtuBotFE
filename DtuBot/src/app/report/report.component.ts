@@ -32,10 +32,11 @@ export class ReportComponent implements OnInit {
       this.report = next;
     }, error => {
     }, () => {
-      this.report.respondent = this.jwt.getUsername();
+      this.report.respondent = 'null';
       this.report.responseTime = this.datePipe.transform(this.myDate, 'HH:mm:ss MM-dd-yyyy').toString();
       console.log(this.report);
       this.reportService.save(this.report).subscribe();
     });
+    window.location.reload();
   }
 }
