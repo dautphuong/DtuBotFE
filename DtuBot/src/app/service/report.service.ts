@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Report} from '../model/report';
 import {Intents} from '../model/intents';
+import {NonAnswer} from '../model/nonAnswer';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,9 @@ export class ReportService {
 
   findReportById(id: number): Observable<Report> {
     return this.httpClient.get<Report>(this.URL + '/get-report/' + id);
+  }
+
+  findReport(): Observable<Report[]> {
+    return this.httpClient.get<Report[]>(this.URL + '/list-report-history');
   }
 }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NonAnswer} from '../model/nonAnswer';
 import {ReportNonAnswerService} from '../service/report-non-answer.service';
+import {Report} from '../model/report';
+import {ReportService} from '../service/report.service';
 
 @Component({
   selector: 'app-history',
@@ -10,8 +12,10 @@ import {ReportNonAnswerService} from '../service/report-non-answer.service';
 export class HistoryComponent implements OnInit {
   listNonAnswer: NonAnswer[];
   checkReport = false;
+  listReport: Report[];
 
-  constructor(private nonAnswrService: ReportNonAnswerService) {
+  constructor(private nonAnswrService: ReportNonAnswerService,
+              private reportService: ReportService) {
 
   }
 
@@ -23,12 +27,14 @@ export class HistoryComponent implements OnInit {
     this.checkReport = true;
     this.nonAnswrService.findReport().subscribe(next => {
       this.listNonAnswer = next;
-      console.log(this.listNonAnswer);
     });
   }
 
+  // tslint:disable-next-line:typedef
   onClickReport() {
     this.checkReport = false;
-
+    this.reportService.findReport().subscribe(next => {
+      this.listReport = next;
+    });
   }
 }
