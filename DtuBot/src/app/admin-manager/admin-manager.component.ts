@@ -16,6 +16,8 @@ export class AdminManagerComponent implements OnInit {
   patternForm: FormGroup;
   responseForm: FormGroup;
   isTag = true;
+  isAddTag = true;
+  valueIntent: Intents;
 
   constructor(
     private adminManagerService: AdminManagerService,
@@ -34,12 +36,6 @@ export class AdminManagerComponent implements OnInit {
       response: ['', [Validators.required]]
     });
   }
-
-  // tslint:disable-next-line:typedef
-  get tag() {
-    return this.tagForm.get('tag');
-  }
-
 
   ngOnInit(): void {
     this.adminManagerService.findAll().subscribe(next => {
@@ -63,7 +59,7 @@ export class AdminManagerComponent implements OnInit {
   onSubmitTag() {
     this.intent = Object.assign({}, this.tagForm.value);
     this.adminManagerService.save(this.intent).subscribe();
-    window.location.reload();
+    // window.location.reload();
   }
 
 
@@ -98,5 +94,15 @@ export class AdminManagerComponent implements OnInit {
       this.intent.patterns = this.intent.patterns.filter(item => item !== pattern);
       this.adminManagerService.save(this.intent).subscribe();
     }
+  }
+
+  // tslint:disable-next-line:typedef
+  checkAdd() {
+    this.adminManagerService.findTag(this.tagForm.controls['tag'].value).subscribe(next => {
+      this.valueIntent = next;
+    }, error => {
+    }, () => {
+      this.isAddTag = this.valueIntent != null;
+    });
   }
 }

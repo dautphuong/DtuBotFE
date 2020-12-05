@@ -237,7 +237,7 @@ td {
 
 .columm {
   border: 2px solid #999;
-
+  word-wrap: break-word;max-width: 200px;
 }
 
 i {

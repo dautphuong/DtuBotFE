@@ -9,7 +9,7 @@
     </thead>
     <tbody>
     <tr class="body">
-      <td class="columm" style="word-wrap: break-word;max-width: 200px">
+      <td class="columm" >
         <div class="button1">
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddTag">+ Thêm từ khóa
           </button>
@@ -20,7 +20,7 @@
           </a>
         </div>
       </td>
-      <td class="columm">
+      <td class="columm" >
         <div class="button1 ">
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern" [disabled]="isTag">+
             Thêm câu
@@ -36,7 +36,7 @@
       </td>
       <td class="columm">
         <div class="button1">
-          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag">+
+          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag ">+
             Thêm câu trả
             lời
           </button>
@@ -68,10 +68,14 @@
         <form accept-charset="UTF-8" role="form" [formGroup]="tagForm" (ngSubmit)="onSubmitTag()">
           <fieldset>
             <div>
-              <input class="form-control" type="text" formControlName="tag">
+              <input id="tagIn" class="form-control" type="text" formControlName="tag" (change)="checkAdd()">
             </div>
             <br>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu">
+            <div *ngIf="isAddTag"  class="badge-danger">
+              Tag đang được để trống hoặc đã tồn tại
+            </div>
+            <br>
+            <input class="btn btn-lg btn-success btn-block" [disabled]="isAddTag" type="submit" value="Lưu" >
           </fieldset>
         </form>
       </div>
@@ -99,7 +103,7 @@
               <input class="form-control" type="text" formControlName="pattern">
             </div>
             <br>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu">
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu" [disabled]="patternForm.invalid">
 
           </fieldset>
         </form>
@@ -127,7 +131,7 @@
               <input class="form-control" type="text" formControlName="response">
             </div>
             <br>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu">
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu" [disabled]="responseForm.invalid">
           </fieldset>
         </form>
       </div>
