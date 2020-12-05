@@ -59,19 +59,37 @@ export class AdminManagerComponent implements OnInit {
   onSubmitTag() {
     this.intent = Object.assign({}, this.tagForm.value);
     this.adminManagerService.save(this.intent).subscribe();
-    // window.location.reload();
+    window.location.reload();
   }
 
 
   // tslint:disable-next-line:typedef
   onSubmitPattern() {
-    this.intent.patterns.push(this.patternForm.controls['pattern'].value);
+    const listPatten = this.patternForm.controls['pattern'].value.replace(/  +/g, '').trim().split('#');
+    const intent1 = this.intent;
+    // tslint:disable-next-line:only-arrow-functions typedef
+    listPatten.forEach(function(value) {
+      // tslint:disable-next-line:triple-equals
+      if (value != '') {
+        intent1.patterns.push(value);
+      }
+    });
+    // console.log(intent1);
+    // this.intent.patterns.push(this.patternForm.controls['pattern'].value);
     this.adminManagerService.save(this.intent).subscribe();
   }
 
   // tslint:disable-next-line:typedef
   onSubmitResponse() {
-    this.intent.responses.push(this.responseForm.controls['response'].value);
+    const listReport = this.responseForm.controls['response'].value.replace(/  +/g, '').trim().split('#');
+    const report1 = this.intent;
+    // tslint:disable-next-line:only-arrow-functions typedef
+    listReport.forEach(function(value) {
+      // tslint:disable-next-line:triple-equals
+      if (value != '') {
+        report1.responses.push(value);
+      }
+    });
     this.adminManagerService.save(this.intent).subscribe();
   }
 
