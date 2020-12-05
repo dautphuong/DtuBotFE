@@ -81,13 +81,13 @@ export class AdminManagerComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onSubmitResponse() {
-    const listReport = this.responseForm.controls['response'].value.replace(/  +/g, '').trim().split('#');
-    const report1 = this.intent;
+    const listResponse = this.responseForm.controls['response'].value.replace(/  +/g, '').trim().split('#');
+    const response1 = this.intent;
     // tslint:disable-next-line:only-arrow-functions typedef
-    listReport.forEach(function(value) {
+    listResponse.forEach(function(value) {
       // tslint:disable-next-line:triple-equals
       if (value != '') {
-        report1.responses.push(value);
+        response1.responses.push(value);
       }
     });
     this.adminManagerService.save(this.intent).subscribe();
