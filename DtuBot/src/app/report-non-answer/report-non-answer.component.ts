@@ -18,6 +18,7 @@ export class ReportNonAnswerComponent implements OnInit {
   intent = new Intents();
   nonAnswer = new NonAnswer();
   myDate = new Date();
+  valueIntent: Intents;
 
   constructor(private nonAnswrService: ReportNonAnswerService,
               private adminManagerService: AdminManagerService,
@@ -28,7 +29,7 @@ export class ReportNonAnswerComponent implements OnInit {
       this.listNonAnswer = next;
     });
     this.intentForm = this.fb.group({
-      tag: ['', [Validators.required]],
+      tagStr: ['', [Validators.required]],
       patternStr: ['', [Validators.required]],
       responseStr: ['', [Validators.required]]
     });
@@ -56,16 +57,43 @@ export class ReportNonAnswerComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    this.intent = Object.assign({}, this.intentForm.value);
-    this.intent.patterns = this.intentForm.controls['patternStr'].value.split('#');
-    this.intent.responses = this.intentForm.controls['responseStr'].value.split('#');
-    this.adminManagerService.save(this.intent).subscribe();
+    this.adminManagerService.findTag(this.intentForm.controls['tagStr'].value).subscribe(next => {
+      this.valueIntent = next;
+    }, error => {
+    }, () => {
+      console.log(this.valueIntent);
+      if (this.valueIntent == null) {
+        this.intent = Object.assign({}, this.intentForm.value);
+        this.intent.patterns = this.intentForm.controls['patternStr'].value.split('#');
+        this.intent.responses = this.intentForm.controls['responseStr'].value.split('#');
+      } else {
+        const listPatten = this.intentForm.controls['patternStr'].value.replace(/  +/g, '').trim().split('#');
+        const listResponse = this.intentForm.controls['responseStr'].value.replace(/  +/g, '').trim().split('#');
+        const intent1 = this.valueIntent;
+        // tslint:disable-next-line:only-arrow-functions typedef
+        listPatten.forEach(function(value) {
+          // tslint:disable-next-line:triple-equals
+          if (value != '') {
+            intent1.patterns.push(value);
+          }
+        });
+        // tslint:disable-next-line:only-arrow-functions typedef
+        listResponse.forEach(function(value) {
+          // tslint:disable-next-line:triple-equals
+          if (value != '') {
+            intent1.responses.push(value);
+          }
+        });
+      }
+      this.adminManagerService.save(this.valueIntent).subscribe();
+    });
 
-    this.nonAnswer.respondent = this.jwt.getUsername();
+
+    // this.nonAnswer.respondent = this.jwt.getUsername();
     this.nonAnswer.responseTime = this.datePipe.transform(this.myDate, 'HH:mm:ss MM-dd-yyyy').toString();
     console.log(this.nonAnswer);
     this.nonAnswrService.save(this.nonAnswer).subscribe();
-    window.location.reload();
+    // window.location.reload();
   }
 
 }
