@@ -44,15 +44,30 @@
               <div class="form-group">
                 <input formControlName="tagStr" class="form-control" placeholder="Tag" type="text">
               </div>
+              <div class="notice badge-danger" role="alert"
+                   *ngIf="intentForm.get('tagStr').invalid && intentForm.get('tagStr').touched">
+                Tag đang được để trống hoặc đã tồn tại
+              </div>
+              <br>
               <div class="form-group">
                 <input formControlName="patternStr" class="form-control" placeholder="Patterns" type="text">
               </div>
+              <div class="notice badge-danger" role="alert"
+                   *ngIf="intentForm.get('patternStr').invalid && intentForm.get('patternStr').touched">
+                Câu hỏi đang được để trống
+              </div>
+              <br>
               <div class="form-group">
                 <input formControlName="responseStr" class="form-control" placeholder="Responses" type="text">
               </div>
+              <div class="notice badge-danger" role="alert"
+                   *ngIf="intentForm.get('responseStr').invalid && intentForm.get('responseStr').touched">
+                Câu trả lời đang được để trống
+              </div>
+              <br>
             </div>
-            <br>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu">
+
+            <input class="btn btn-lg btn-dark btn-block" type="submit" value="Lưu" [disabled]="intentForm.invalid">
           </fieldset>
         </form>
       </div>

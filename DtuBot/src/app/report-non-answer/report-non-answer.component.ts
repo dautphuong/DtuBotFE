@@ -93,7 +93,7 @@ export class ReportNonAnswerComponent implements OnInit {
     this.nonAnswer.responseTime = this.datePipe.transform(this.myDate, 'HH:mm:ss MM-dd-yyyy').toString();
     console.log(this.nonAnswer);
     this.nonAnswrService.save(this.nonAnswer).subscribe();
-    // window.location.reload();
+    window.location.reload();
   }
 
 }

@@ -75,7 +75,7 @@
               Tag đang được để trống hoặc đã tồn tại
             </div>
             <br>
-            <input class="btn btn-lg btn-success btn-block" [disabled]="isAddTag" type="submit" value="Lưu" >
+            <input class="btn btn-lg btn-dark btn-block" [disabled]="isAddTag" type="submit" value="Lưu" >
           </fieldset>
         </form>
       </div>
@@ -90,7 +90,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle1">Thêm Pattern tag '{{intent.tag}}'</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle1">Thêm câu hỏi tag '{{intent.tag}}'</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -103,7 +103,7 @@
               <input class="form-control" type="text" formControlName="pattern">
             </div>
             <br>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu" [disabled]="patternForm.invalid">
+            <input class="btn btn-lg btn-dark btn-block" type="submit" value="Lưu" [disabled]="patternForm.invalid">
 
           </fieldset>
         </form>
@@ -119,7 +119,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle2">Thêm Response tag '{{intent.tag}}'</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle2">Thêm câu trả lời tag '{{intent.tag}}'</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -131,7 +131,7 @@
               <input class="form-control" type="text" formControlName="response">
             </div>
             <br>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="Lưu" [disabled]="responseForm.invalid">
+            <input class="btn btn-lg btn-dark btn-block" type="submit" value="Lưu" [disabled]="responseForm.invalid">
           </fieldset>
         </form>
       </div>
