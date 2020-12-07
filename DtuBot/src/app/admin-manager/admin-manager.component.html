@@ -1,4 +1,4 @@
-<div class="container-fluid border-3">
+<div class="container-fluid border-3 Content">
   <table class="table table-striped table-sm">
     <thead>
     <tr>
@@ -10,7 +10,7 @@
     <tbody>
     <tr class="body">
       <td class="columm" >
-        <div class="button1">
+        <div class="button1 overflow-auto">
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddTag">+ Thêm từ khóa
           </button>
           <a class="key mt-3" *ngFor="let intent of listIntent">
@@ -21,10 +21,9 @@
         </div>
       </td>
       <td class="columm" >
-        <div class="button1 ">
+        <div class="button1 overflow-auto">
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern" [disabled]="isTag">+
-            Thêm câu
-            hỏi
+            Thêm câu hỏi
           </button>
           <span class="cauhoi mt-3" *ngFor="let pattern of intent.patterns">
             <br><br>
@@ -35,7 +34,7 @@
         </div>
       </td>
       <td class="columm">
-        <div class="button1">
+        <div class="button1 overflow-auto">
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag ">+
             Thêm câu trả
             lời

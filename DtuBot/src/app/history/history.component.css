@@ -1,0 +1,8 @@
+.Content {
+  position: relative;
+  display: block;
+  width: auto;
+  background: white;
+  height: 550px;
+  border: 1px solid #7e000c;
+}

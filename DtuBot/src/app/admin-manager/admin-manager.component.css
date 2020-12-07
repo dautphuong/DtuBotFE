@@ -19,12 +19,12 @@ td {
   width: 40%
 }
 
-#Content {
+.Content {
   position: relative;
   display: block;
   width: 775px;
   background: white;
-  height: 1000px;
+  height: 550px;
   border: #7e000c;
 }
 
@@ -56,7 +56,6 @@ td {
   height: 500px;
   padding: 10px;
   resize: none;
-  overflow-y: scroll;
 }
 
 .cauhoi {
