@@ -48,7 +48,7 @@ export class AuthLoginComponent implements OnInit {
         this.jwtService.saveUsername(data.username);
         this.jwtService.saveAuthorities(data.authorities);
         this.jwtService.saveEmail(data.email);
-        window.location.reload();
+        this.router.navigateByUrl('');
       },
       error: (err) => {
         this.isLogInFailed = true;
@@ -58,6 +58,7 @@ export class AuthLoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.jwtService.logOut();
 
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -69,7 +70,6 @@ export class AuthLoginComponent implements OnInit {
       this.username = this.jwtService.getUsername();
       this.roles = this.jwtService.getAuthorities().map(r => r.replace('ROLE_', '').toLowerCase());
       this.email = this.jwtService.getEmail();
-
 
     }
   }

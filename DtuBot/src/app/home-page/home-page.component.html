@@ -1,0 +1,29 @@
+<div id='body'>
+  <div id='container'>
+    <div class="wrapper">
+      <div id="Header">
+        <button class="logout float-right btn-dark" (click)="logOut()">
+          Đăng xuất
+        </button>
+        <div class="Database">DATABASE</div>
+        <button class="train-bot">TRAIN BOT</button>
+        <ul class='nav'>
+          <li>
+            <a [routerLink]="['']">Quản lý câu hỏi</a>
+          </li>
+          <li>
+            <a [routerLink]="['report']">Báo cáo người dùng</a>
+          </li>
+          <li>
+            <a  [routerLink]="['non-answer']">Câu hỏi chưa trả lời</a>
+          </li>
+          <li>
+            <a  [routerLink]="['history']">Lịch sử báo cáo</a>
+          </li>
+        </ul>
+      </div>
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
+</div>

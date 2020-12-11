@@ -13,6 +13,7 @@ import {ReportNonAnswerComponent} from './report-non-answer/report-non-answer.co
 import {ReportComponent} from './report/report.component';
 import {HistoryComponent} from './history/history.component';
 import {DatePipe} from '@angular/common';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {DatePipe} from '@angular/common';
     ReportNonAnswerComponent,
     ReportComponent,
     HistoryComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
