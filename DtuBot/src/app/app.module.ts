@@ -7,13 +7,14 @@ import {LoginModule} from './login/login.module';
 import {httpInterceptorProviders} from './login/auth/auth-http.interceptor';
 import {AdminManagerService} from './service/admin-manager.service';
 import {HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {ReportNonAnswerComponent} from './report-non-answer/report-non-answer.component';
 import {ReportComponent} from './report/report.component';
 import {HistoryComponent} from './history/history.component';
 import {DatePipe} from '@angular/common';
 import { HomePageComponent } from './home-page/home-page.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     LoginModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [httpInterceptorProviders, AdminManagerService, DatePipe],
   bootstrap: [AppComponent]

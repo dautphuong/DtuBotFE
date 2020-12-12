@@ -18,6 +18,7 @@ export class AdminManagerComponent implements OnInit {
   isTag = true;
   isAddTag = true;
   valueIntent: Intents;
+  test: string;
 
   constructor(
     private adminManagerService: AdminManagerService,
@@ -45,12 +46,18 @@ export class AdminManagerComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onClick(tag: string) {
+    try{
+    document.getElementById('id' + this.intent.tag).style.color = 'gray';
+    }catch (e) {
+      console.log('null');
+    }
     this.intent = new Intents();
     this.adminManagerService.findTag(tag).subscribe(next => {
       this.intent = next;
     }, error => {
     }, () => {
       this.isTag = false;
+      document.getElementById('id' + tag).style.color = 'red';
     });
   }
 

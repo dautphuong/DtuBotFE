@@ -24,7 +24,11 @@ export class AdminManagerService {
     return this.httpClient.post<Intents>(this.URL + '/save-tag', intents);
   }
 
-  delete(id: string): Observable<any>{
+  delete(id: string): Observable<any> {
     return this.httpClient.delete<any>(this.URL + '/delete-tag/' + id);
+  }
+
+  trainBot(): Observable<any> {
+    return this.httpClient.get<any>('http://localhost:9000/api/restart');
   }
 }

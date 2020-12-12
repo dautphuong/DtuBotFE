@@ -236,11 +236,18 @@ td {
 
 .columm {
   border: 2px solid #999;
-  word-wrap: break-word;max-width: 200px;
+  word-wrap: break-word;
+  max-width: 200px;
 }
 
 i {
   color: red;
+  cursor: pointer
 }
 
 
+.key {
+  text-decoration: none;
+  color: black;
+  cursor: pointer
+}

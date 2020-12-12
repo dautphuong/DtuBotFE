@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {JwtService} from '../login/services/jwt.service';
 import {Router} from '@angular/router';
+import {AdminManagerService} from '../service/admin-manager.service';
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +15,8 @@ export class HomePageComponent implements OnInit {
   username: string;
 
   constructor(
-    private jwt: JwtService, private router: Router) {
+    private jwt: JwtService, private router: Router,
+    private adminManagerService: AdminManagerService) {
     // dòng lệnh bắt login mới vào homepage
     try {
       this.roles = jwt.getAuthorities();
@@ -42,4 +44,13 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line:typedef
+  trainBot() {
+    this.adminManagerService.trainBot().subscribe(next => {
+      alert('Done.');
+    }, error => {
+      alert('Done.');
+    }, () => {
+    });
+  }
 }

@@ -1,4 +1,8 @@
 <div class="container-fluid border-3 Content">
+  <label class="float-right font-weight-bolder mt-3">
+    <input class="float-right" type="text" [(ngModel)]="test" placeholder="Tìm kiếm">
+  </label>
+
   <table class="table table-striped table-sm">
     <thead>
     <tr>
@@ -9,18 +13,20 @@
     </thead>
     <tbody>
     <tr class="body">
-      <td class="columm" >
+
+      <td class="columm">
         <div class="button1 overflow-auto">
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddTag">+ Thêm từ khóa
           </button>
-          <a class="key mt-3" *ngFor="let intent of listIntent">
+          <a id="id{{intent.tag}}" class="key mt-3" *ngFor="let intent of listIntent | filter : test " (click)="onClick(intent.tag)">
             <br><br>
-            <span  (click)="onClick(intent.tag)">{{intent.tag}}</span>
+            <span> ({{intent.patterns.length}}|{{intent.responses.length}})</span>
+            <span  > {{intent.tag}} </span>
             <i class="fa fa-close float-right" (click)="deleteTag(intent.tag)"></i>
           </a>
         </div>
       </td>
-      <td class="columm" >
+      <td class="columm">
         <div class="button1 overflow-auto">
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern" [disabled]="isTag">+
             Thêm câu hỏi
@@ -28,21 +34,22 @@
           <span class="cauhoi mt-3" *ngFor="let pattern of intent.patterns">
             <br><br>
             <span>{{pattern}}</span>
-            <i class="fa fa-close float-right" (click)="deletePattern(pattern)"></i>
+            <i class="fa fa-close float-right " (click)="deletePattern(pattern)"></i>
           </span>
 
         </div>
       </td>
       <td class="columm">
         <div class="button1 overflow-auto">
-          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag ">+
+          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag ">
+            +
             Thêm câu trả
             lời
           </button>
           <span class="cautraloi mt-3" *ngFor="let response of intent.responses">
             <br><br>
             <span>{{response}}</span>
-            <i class="fa fa-close float-right" (click)="deleteReponse(response)"></i>
+            <i class="fa fa-close float-right " (click)="deleteReponse(response)"></i>
           </span>
         </div>
       </td>
@@ -70,11 +77,11 @@
               <input id="tagIn" class="form-control" type="text" formControlName="tag" (change)="checkAdd()">
             </div>
             <br>
-            <div *ngIf="isAddTag"  class="badge-danger">
+            <div *ngIf="isAddTag" class="badge-danger">
               Tag đang được để trống hoặc đã tồn tại
             </div>
             <br>
-            <input class="btn btn-lg btn-dark btn-block" [disabled]="isAddTag" type="submit" value="Lưu" >
+            <input class="btn btn-lg btn-dark btn-block" [disabled]="isAddTag" type="submit" value="Lưu">
           </fieldset>
         </form>
       </div>
