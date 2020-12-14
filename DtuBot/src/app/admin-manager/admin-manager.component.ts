@@ -46,9 +46,9 @@ export class AdminManagerComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onClick(tag: string) {
-    try{
-    document.getElementById('id' + this.intent.tag).style.color = 'gray';
-    }catch (e) {
+    try {
+      document.getElementById('id' + this.intent.tag).style.color = 'gray';
+    } catch (e) {
       console.log('null');
     }
     this.intent = new Intents();

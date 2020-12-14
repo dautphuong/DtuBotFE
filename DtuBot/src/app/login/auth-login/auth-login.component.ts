@@ -16,12 +16,10 @@ export class AuthLoginComponent implements OnInit {
   loginForm: FormGroup;
   loginInfo: LoginInfo;
   isLogInFailed = false;
-  isLoggedIn = false;
 
   userId: string;
   roles: string[] = [];
   username: string;
-  authority: string;
   email: string;
 
   constructor(private fb: FormBuilder,
@@ -66,11 +64,9 @@ export class AuthLoginComponent implements OnInit {
     });
 
     if (this.jwtService.getToken()) {
-      this.isLoggedIn = true;
       this.username = this.jwtService.getUsername();
       this.roles = this.jwtService.getAuthorities().map(r => r.replace('ROLE_', '').toLowerCase());
       this.email = this.jwtService.getEmail();
-
     }
   }
 

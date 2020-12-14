@@ -28,7 +28,7 @@
       </td>
       <td class="columm">
         <div class="button1 overflow-auto">
-          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern" [disabled]="isTag">+
+          <button *ngIf="isTag==false" class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern" [disabled]="isTag">+
             Thêm câu hỏi
           </button>
           <span class="cauhoi mt-3" *ngFor="let pattern of intent.patterns">
@@ -41,7 +41,7 @@
       </td>
       <td class="columm">
         <div class="button1 overflow-auto">
-          <button class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag ">
+          <button *ngIf="isTag==false" class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag ">
             +
             Thêm câu trả
             lời
