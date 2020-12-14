@@ -26,15 +26,15 @@ export class AdminManagerComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.tagForm = this.fb.group({
-      tag: ['', [Validators.required]],
+      tag: ['', [Validators.required, Validators.maxLength(255)]],
       patterns: [[]],
       responses: [[]]
     });
     this.patternForm = this.fb.group({
-      pattern: ['', [Validators.required]]
+      pattern: ['', [Validators.required, Validators.maxLength(1000)]]
     });
     this.responseForm = this.fb.group({
-      response: ['', [Validators.required]]
+      response: ['', [Validators.required, Validators.maxLength(1000)]]
     });
   }
 

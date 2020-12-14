@@ -18,17 +18,19 @@
         <div class="button1 overflow-auto">
           <button class="button" type="button" data-toggle="modal" data-target="#layoutAddTag">+ Thêm từ khóa
           </button>
-          <a id="id{{intent.tag}}" class="key mt-3" *ngFor="let intent of listIntent | filter : test " (click)="onClick(intent.tag)">
+          <a id="id{{intent.tag}}" class="key mt-3" *ngFor="let intent of listIntent | filter : test "
+             (click)="onClick(intent.tag)">
             <br><br>
             <span> ({{intent.patterns.length}}|{{intent.responses.length}})</span>
-            <span  > {{intent.tag}} </span>
+            <span> {{intent.tag}} </span>
             <i class="fa fa-close float-right" (click)="deleteTag(intent.tag)"></i>
           </a>
         </div>
       </td>
       <td class="columm">
         <div class="button1 overflow-auto">
-          <button *ngIf="isTag==false" class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern" [disabled]="isTag">+
+          <button *ngIf="isTag==false" class="button" type="button" data-toggle="modal" data-target="#layoutAddPattern"
+                  [disabled]="isTag">+
             Thêm câu hỏi
           </button>
           <span class="cauhoi mt-3" *ngFor="let pattern of intent.patterns">
@@ -41,7 +43,8 @@
       </td>
       <td class="columm">
         <div class="button1 overflow-auto">
-          <button *ngIf="isTag==false" class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse" [disabled]="isTag ">
+          <button *ngIf="isTag==false" class="button" type="button" data-toggle="modal" data-target="#layoutAddResponse"
+                  [disabled]="isTag ">
             +
             Thêm câu trả
             lời
@@ -80,8 +83,13 @@
             <div *ngIf="isAddTag" class="badge-danger">
               Tag đang được để trống hoặc đã tồn tại
             </div>
+            <div class="notice" role="alert"
+                 *ngIf="tagForm.get('tag').invalid && tagForm.get('tag').touched">
+              Giá trị giới hạn 255 kí tự
+            </div>
             <br>
-            <input class="btn btn-lg btn-dark btn-block" [disabled]="isAddTag" type="submit" value="Lưu">
+            <input class="btn btn-lg btn-dark btn-block" [disabled]="isAddTag||tagForm.invalid" type="submit"
+                   value="Lưu">
           </fieldset>
         </form>
       </div>
@@ -106,7 +114,10 @@
 
           <fieldset>
             <div>
-              <input class="form-control" type="text" formControlName="pattern">
+              <textarea class="form-control" formControlName="pattern" rows="3"></textarea>
+            </div>
+            <div class="notice mt-1" role="alert">
+              Giá trị tối đa là 1000 kí tự
             </div>
             <br>
             <input class="btn btn-lg btn-dark btn-block" type="submit" value="Lưu" [disabled]="patternForm.invalid">
@@ -134,7 +145,10 @@
         <form accept-charset="UTF-8" role="form" [formGroup]="responseForm" (ngSubmit)="onSubmitResponse()">
           <fieldset>
             <div>
-              <input class="form-control" type="text" formControlName="response">
+              <textarea class="form-control" formControlName="response" rows="3"></textarea>
+            </div>
+            <div class="notice mt-1" role="alert">
+              Giá trị tối đa là 1000 kí tự
             </div>
             <br>
             <input class="btn btn-lg btn-dark btn-block" type="submit" value="Lưu" [disabled]="responseForm.invalid">

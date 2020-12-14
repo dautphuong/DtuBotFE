@@ -251,3 +251,12 @@ i {
   color: black;
   cursor: pointer
 }
+textarea {
+  resize: none;
+  overflow-y: scroll;
+  height: 100px;
+}
+
+.notice{
+  color: red;
+}
