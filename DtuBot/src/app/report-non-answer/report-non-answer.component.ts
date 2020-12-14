@@ -51,7 +51,6 @@ export class ReportNonAnswerComponent implements OnInit {
     this.intentForm.patchValue({patternStr: str});
     this.nonAnswrService.findNonAnswerById(id).subscribe(next => {
       this.nonAnswer = next;
-      console.log(this.nonAnswer);
     });
   }
 
@@ -63,9 +62,10 @@ export class ReportNonAnswerComponent implements OnInit {
     }, () => {
       console.log(this.valueIntent);
       if (this.valueIntent == null) {
-        this.intent = Object.assign({}, this.intentForm.value);
+        this.intent.tag = this.intentForm.controls['tagStr'].value;
         this.intent.patterns = this.intentForm.controls['patternStr'].value.split('#');
         this.intent.responses = this.intentForm.controls['responseStr'].value.split('#');
+        this.valueIntent = this.intent;
       } else {
         const listPatten = this.intentForm.controls['patternStr'].value.replace(/  +/g, '').trim().split('#');
         const listResponse = this.intentForm.controls['responseStr'].value.replace(/  +/g, '').trim().split('#');
@@ -85,15 +85,15 @@ export class ReportNonAnswerComponent implements OnInit {
           }
         });
       }
+      console.log(this.valueIntent);
       this.adminManagerService.save(this.valueIntent).subscribe();
     });
 
 
-    // this.nonAnswer.respondent = this.jwt.getUsername();
+    this.nonAnswer.respondent = this.jwt.getUsername();
     this.nonAnswer.responseTime = this.datePipe.transform(this.myDate, 'HH:mm:ss MM-dd-yyyy').toString();
-    console.log(this.nonAnswer);
     this.nonAnswrService.save(this.nonAnswer).subscribe();
-    window.location.reload();
+    // window.location.reload();
   }
 
 }
