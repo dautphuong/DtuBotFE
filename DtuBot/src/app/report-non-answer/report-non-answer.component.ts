@@ -93,7 +93,7 @@ export class ReportNonAnswerComponent implements OnInit {
     this.nonAnswer.respondent = this.jwt.getUsername();
     this.nonAnswer.responseTime = this.datePipe.transform(this.myDate, 'HH:mm:ss MM-dd-yyyy').toString();
     this.nonAnswrService.save(this.nonAnswer).subscribe();
-    // window.location.reload();
+    window.location.reload();
   }
 
 }

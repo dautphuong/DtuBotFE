@@ -81,9 +81,9 @@ export class AdminManagerComponent implements OnInit {
         intent1.patterns.push(value);
       }
     });
-    // console.log(intent1);
-    // this.intent.patterns.push(this.patternForm.controls['pattern'].value);
     this.adminManagerService.save(this.intent).subscribe();
+    window.location.reload();
+
   }
 
   // tslint:disable-next-line:typedef
@@ -98,6 +98,7 @@ export class AdminManagerComponent implements OnInit {
       }
     });
     this.adminManagerService.save(this.intent).subscribe();
+    window.location.reload();
   }
 
   deleteTag(tag: string): void {
