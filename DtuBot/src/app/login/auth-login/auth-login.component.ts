@@ -59,7 +59,7 @@ export class AuthLoginComponent implements OnInit {
     this.jwtService.logOut();
 
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.maxLength(50)]],
+      username: ['', [Validators.required, Validators.maxLength(30)]],
       password: ['', [Validators.required, Validators.maxLength(15)]]
     });
 

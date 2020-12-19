@@ -26,7 +26,7 @@ export class AdminManagerComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.tagForm = this.fb.group({
-      tag: ['', [Validators.required, Validators.maxLength(255)]],
+      tag: ['', [Validators.required, Validators.maxLength(100)]],
       patterns: [[]],
       responses: [[]]
     });
@@ -82,7 +82,7 @@ export class AdminManagerComponent implements OnInit {
       }
     });
     this.adminManagerService.save(this.intent).subscribe();
-    window.location.reload();
+    // window.location.reload();
 
   }
 

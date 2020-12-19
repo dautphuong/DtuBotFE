@@ -38,7 +38,6 @@ export class HomePageComponent implements OnInit {
       window.location.href = 'login';
 
     }
-    this.jwt.saveUsername(window.localStorage.getItem('usernameRemember'));
   }
 
   ngOnInit(): void {
@@ -46,11 +45,13 @@ export class HomePageComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   trainBot() {
+    document.getElementById('body').style.cursor = 'wait';
     this.adminManagerService.trainBot().subscribe(next => {
       alert('Done.');
+      window.location.reload();
     }, error => {
       alert('Done.');
-    }, () => {
+      window.location.reload();
     });
   }
 }
