@@ -16,8 +16,11 @@ const routes: Routes = [
       {path: 'non-answer', component: ReportNonAnswerComponent},
       {path: 'report', component: ReportComponent},
       {path: 'history', component: HistoryComponent},
+      { path: '**', component: AdminManagerComponent }
+
     ]
-  }
+  },
+
 ];
 
 @NgModule({

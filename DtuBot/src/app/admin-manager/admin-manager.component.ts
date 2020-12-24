@@ -19,6 +19,7 @@ export class AdminManagerComponent implements OnInit {
   isAddTag = true;
   valueIntent: Intents;
   test: string;
+  saveIntent = new Intents();
 
   constructor(
     private adminManagerService: AdminManagerService,
@@ -66,7 +67,6 @@ export class AdminManagerComponent implements OnInit {
   onSubmitTag() {
     this.intent = Object.assign({}, this.tagForm.value);
     this.adminManagerService.save(this.intent).subscribe();
-    window.location.reload();
   }
 
 
@@ -82,7 +82,6 @@ export class AdminManagerComponent implements OnInit {
       }
     });
     this.adminManagerService.save(this.intent).subscribe();
-    // window.location.reload();
 
   }
 
@@ -98,7 +97,6 @@ export class AdminManagerComponent implements OnInit {
       }
     });
     this.adminManagerService.save(this.intent).subscribe();
-    window.location.reload();
   }
 
   deleteTag(tag: string): void {
