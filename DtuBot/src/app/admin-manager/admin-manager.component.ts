@@ -19,7 +19,6 @@ export class AdminManagerComponent implements OnInit {
   isAddTag = true;
   valueIntent: Intents;
   test: string;
-  saveIntent = new Intents();
 
   constructor(
     private adminManagerService: AdminManagerService,
@@ -65,15 +64,39 @@ export class AdminManagerComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onSubmitTag() {
+    try {
+      document.getElementById('id' + this.intent.tag).style.color = 'gray';
+    } catch (e) {
+      console.log('null');
+    }
     this.intent = Object.assign({}, this.tagForm.value);
-    this.adminManagerService.save(this.intent).subscribe();
+    this.adminManagerService.save(this.intent).subscribe(next => {
+    }, error => {
+    }, () => {
+      this.adminManagerService.findAll().subscribe(next => {
+        this.listIntent = next;
+      }, error => {
+      }, () => {
+        this.adminManagerService.findTag(this.intent.tag).subscribe(next => {
+          this.intent = next;
+        }, error => {
+        }, () => {
+          this.isTag = false;
+          document.getElementById('id' + this.intent.tag).style.color = 'red';
+        });
+      });
+    });
+
   }
 
 
   // tslint:disable-next-line:typedef
   onSubmitPattern() {
-    const listPatten = this.patternForm.controls['pattern'].value.replace(/  +/g, '').trim().split('#');
+    let listPatten = this.patternForm.controls['pattern'].value.replace(/  +/g, '').trim().split('#');
     const intent1 = this.intent;
+
+    listPatten = listPatten.filter(item => !intent1.patterns.includes(item));
+
     // tslint:disable-next-line:only-arrow-functions typedef
     listPatten.forEach(function(value) {
       // tslint:disable-next-line:triple-equals
@@ -81,14 +104,33 @@ export class AdminManagerComponent implements OnInit {
         intent1.patterns.push(value);
       }
     });
-    this.adminManagerService.save(this.intent).subscribe();
+    this.adminManagerService.save(this.intent).subscribe(next => {
+    }, error => {
+    }, () => {
+      this.patternForm.reset();
+      this.adminManagerService.findAll().subscribe(next => {
+        this.listIntent = next;
+      }, error => {
+      }, () => {
+        this.adminManagerService.findTag(this.intent.tag).subscribe(next => {
+          this.intent = next;
+        }, error => {
+        }, () => {
+          this.isTag = false;
+          document.getElementById('id' + this.intent.tag).style.color = 'red';
+        });
+      });
+    });
 
   }
 
   // tslint:disable-next-line:typedef
   onSubmitResponse() {
-    const listResponse = this.responseForm.controls['response'].value.replace(/  +/g, '').trim().split('#');
+    let listResponse = this.responseForm.controls['response'].value.replace(/  +/g, '').trim().split('#');
     const response1 = this.intent;
+
+    listResponse = listResponse.filter(item => !response1.patterns.includes(item));
+
     // tslint:disable-next-line:only-arrow-functions typedef
     listResponse.forEach(function(value) {
       // tslint:disable-next-line:triple-equals
@@ -96,7 +138,23 @@ export class AdminManagerComponent implements OnInit {
         response1.responses.push(value);
       }
     });
-    this.adminManagerService.save(this.intent).subscribe();
+    this.adminManagerService.save(this.intent).subscribe(next => {
+    }, error => {
+    }, () => {
+      this.responseForm.reset();
+      this.adminManagerService.findAll().subscribe(next => {
+        this.listIntent = next;
+      }, error => {
+      }, () => {
+        this.adminManagerService.findTag(this.intent.tag).subscribe(next => {
+          this.intent = next;
+        }, error => {
+        }, () => {
+          this.isTag = false;
+          document.getElementById('id' + this.intent.tag).style.color = 'red';
+        });
+      });
+    });
   }
 
   deleteTag(tag: string): void {
@@ -109,14 +167,44 @@ export class AdminManagerComponent implements OnInit {
   deleteReponse(response: string): void {
     if (window.confirm('Bạn có chắc xóa ' + response + ' ?')) {
       this.intent.responses = this.intent.responses.filter(item => item !== response);
-      this.adminManagerService.save(this.intent).subscribe();
+      this.adminManagerService.save(this.intent).subscribe(next => {
+      }, error => {
+      }, () => {
+        this.adminManagerService.findAll().subscribe(next => {
+          this.listIntent = next;
+        }, error => {
+        }, () => {
+          this.adminManagerService.findTag(this.intent.tag).subscribe(next => {
+            this.intent = next;
+          }, error => {
+          }, () => {
+            this.isTag = false;
+            document.getElementById('id' + this.intent.tag).style.color = 'red';
+          });
+        });
+      });
     }
   }
 
   deletePattern(pattern: string): void {
     if (window.confirm('Bạn có chắc xóa ' + pattern + ' ?')) {
       this.intent.patterns = this.intent.patterns.filter(item => item !== pattern);
-      this.adminManagerService.save(this.intent).subscribe();
+      this.adminManagerService.save(this.intent).subscribe(next => {
+      }, error => {
+      }, () => {
+        this.adminManagerService.findAll().subscribe(next => {
+          this.listIntent = next;
+        }, error => {
+        }, () => {
+          this.adminManagerService.findTag(this.intent.tag).subscribe(next => {
+            this.intent = next;
+          }, error => {
+          }, () => {
+            this.isTag = false;
+            document.getElementById('id' + this.intent.tag).style.color = 'red';
+          });
+        });
+      });
     }
   }
 

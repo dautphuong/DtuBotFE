@@ -71,7 +71,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form accept-charset="UTF-8" role="form" [formGroup]="tagForm" (ngSubmit)="onSubmitTag()">
+        <form accept-charset="UTF-8" role="form" [formGroup]="tagForm" >
           <fieldset>
             <div>
               <input id="tagIn" class="form-control" type="text" formControlName="tag" (change)="checkAdd()">
@@ -85,8 +85,8 @@
               Giá trị giới hạn 255 kí tự
             </div>
             <br>
-            <input class="btn btn-lg btn-dark btn-block" [disabled]="isAddTag||tagForm.invalid" type="submit"
-                   value="Lưu">
+            <input class="btn btn-lg btn-dark btn-block" [disabled]="isAddTag||tagForm.invalid" type="submit" data-dismiss="modal"
+                   (click)="onSubmitTag()" value="Lưu">
           </fieldset>
         </form>
       </div>
@@ -107,7 +107,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form accept-charset="UTF-8" role="form" [formGroup]="patternForm" (ngSubmit)="onSubmitPattern()">
+        <form accept-charset="UTF-8" role="form" [formGroup]="patternForm" >
 
           <fieldset>
             <div>
@@ -117,7 +117,8 @@
               Giá trị tối đa là 1000 kí tự
             </div>
             <br>
-            <input class="btn btn-lg btn-dark btn-block" type="submit" value="Lưu" [disabled]="patternForm.invalid">
+            <input class="btn btn-lg btn-dark btn-block" type="submit" value="Lưu" [disabled]="patternForm.invalid"
+                   data-dismiss="modal" (click)="onSubmitPattern()">
 
           </fieldset>
         </form>
@@ -139,7 +140,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form accept-charset="UTF-8" role="form" [formGroup]="responseForm" (ngSubmit)="onSubmitResponse()">
+        <form accept-charset="UTF-8" role="form" [formGroup]="responseForm" >
           <fieldset>
             <div>
               <textarea class="form-control" formControlName="response" rows="3"></textarea>
@@ -148,7 +149,8 @@
               Giá trị tối đa là 1000 kí tự
             </div>
             <br>
-            <input class="btn btn-lg btn-dark btn-block" type="submit" value="Lưu" [disabled]="responseForm.invalid">
+            <input class="btn btn-lg btn-dark btn-block" type="submit" value="Lưu" [disabled]="responseForm.invalid"
+                   data-dismiss="modal" (click)="onSubmitResponse()">
           </fieldset>
         </form>
       </div>
