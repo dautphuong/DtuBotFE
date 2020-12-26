@@ -37,12 +37,10 @@ export class HomePageComponent implements OnInit {
       this.jwt.logOut();
       window.location.reload();
       window.location.href = 'login';
-
     }
   }
 
   ngOnInit(): void {
-    document.getElementById('id1').style.color = 'black';
   }
 
   // tslint:disable-next-line:typedef
@@ -50,15 +48,32 @@ export class HomePageComponent implements OnInit {
     document.getElementById('body').style.cursor = 'wait';
     this.isTrain = true;
     this.adminManagerService.trainBot().subscribe(next => {
-      alert('Done.');
-      window.location.reload();
+      // tslint:disable-next-line:no-shadowed-variable
+      this.adminManagerService.trainBot().subscribe(next => {
+        alert('Done.');
+        window.location.reload();
+      }, error => {
+        alert('Done.');
+        window.location.reload();
+      });
     }, error => {
-      alert('Done.');
-      window.location.reload();
+      this.adminManagerService.trainBot().subscribe(next => {
+        alert('Done.');
+        window.location.reload();
+        // tslint:disable-next-line:no-shadowed-variable
+      }, error => {
+        alert('Done.');
+        window.location.reload();
+      });
+    }, () => {
     });
   }
 
+  // tslint:disable-next-line:typedef
   onClick(id: string) {
-
+    for (let i = 1; i < 5; i++) {
+      document.getElementById('id' + i).style.color = 'white';
+    }
+    document.getElementById(id + '').style.color = 'yellow';
   }
 }
