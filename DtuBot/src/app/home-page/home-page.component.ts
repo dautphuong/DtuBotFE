@@ -48,24 +48,15 @@ export class HomePageComponent implements OnInit {
     document.getElementById('body').style.cursor = 'wait';
     this.isTrain = true;
     this.adminManagerService.trainBot().subscribe(next => {
-      // tslint:disable-next-line:no-shadowed-variable
-      this.adminManagerService.trainBot().subscribe(next => {
-        alert('Done.');
-        window.location.reload();
-      }, error => {
-        alert('Done.');
-        window.location.reload();
-      });
+      alert('Done.');
     }, error => {
       this.adminManagerService.trainBot().subscribe(next => {
         alert('Done.');
         window.location.reload();
-        // tslint:disable-next-line:no-shadowed-variable
       }, error => {
         alert('Done.');
         window.location.reload();
       });
-    }, () => {
     });
   }
 
