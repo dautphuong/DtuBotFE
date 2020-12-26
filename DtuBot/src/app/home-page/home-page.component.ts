@@ -13,6 +13,7 @@ export class HomePageComponent implements OnInit {
   userId: string;
   checkAdmin = false;
   username: string;
+  isTrain = false;
 
   constructor(
     private jwt: JwtService, private router: Router,
@@ -41,11 +42,13 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    document.getElementById('id1').style.color = 'black';
   }
 
   // tslint:disable-next-line:typedef
   trainBot() {
     document.getElementById('body').style.cursor = 'wait';
+    this.isTrain = true;
     this.adminManagerService.trainBot().subscribe(next => {
       alert('Done.');
       window.location.reload();
@@ -53,5 +56,9 @@ export class HomePageComponent implements OnInit {
       alert('Done.');
       window.location.reload();
     });
+  }
+
+  onClick(id: string) {
+
   }
 }

@@ -8,24 +8,23 @@
         <div class="Database">DTUaBot</div>
         <ul class='nav'>
           <li>
-            <a [routerLink]="['']">Quản lý câu hỏi</a>
+            <a id="id1" [routerLink]="['']" (click)="onClick('id1')">Quản lý câu hỏi</a>
           </li>
           <li>
-            <a [routerLink]="['report']">Báo cáo người dùng</a>
+            <a id="id2" [routerLink]="['report']" (click)="onClick('id2')">Báo cáo người dùng</a>
           </li>
           <li>
-            <a [routerLink]="['non-answer']">Câu hỏi chưa trả lời</a>
+            <a id="id3" [routerLink]="['non-answer']" (click)="onClick('id3')">Câu hỏi chưa trả lời</a>
           </li>
           <li>
-            <a [routerLink]="['history']">Lịch sử báo cáo</a>
+            <a id="id4" [routerLink]="['history']" (click)="onClick('id4')">Lịch sử báo cáo</a>
           </li>
-          <button  class="train-bot " (click)="trainBot()">TRAIN BOT</button>
+          <button id="btnTrainBot" class="train-bot " (click)="trainBot()" [disabled]="isTrain">TRAIN BOT</button>
 
         </ul>
 
       </div>
       <router-outlet></router-outlet>
-
     </div>
   </div>
 </div>

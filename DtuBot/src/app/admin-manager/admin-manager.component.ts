@@ -52,13 +52,7 @@ export class AdminManagerComponent implements OnInit {
       console.log('null');
     }
     this.intent = new Intents();
-    this.adminManagerService.findTag(tag).subscribe(next => {
-      this.intent = next;
-    }, error => {
-    }, () => {
-      this.isTag = false;
-      document.getElementById('id' + tag).style.color = 'red';
-    });
+    this.onLoadDataByTag(tag);
   }
 
 
@@ -73,18 +67,8 @@ export class AdminManagerComponent implements OnInit {
     this.adminManagerService.save(this.intent).subscribe(next => {
     }, error => {
     }, () => {
-      this.adminManagerService.findAll().subscribe(next => {
-        this.listIntent = next;
-      }, error => {
-      }, () => {
-        this.adminManagerService.findTag(this.intent.tag).subscribe(next => {
-          this.intent = next;
-        }, error => {
-        }, () => {
-          this.isTag = false;
-          document.getElementById('id' + this.intent.tag).style.color = 'red';
-        });
-      });
+      this.onLoadDataByTag(this.intent.tag);
+
     });
 
   }
@@ -108,18 +92,8 @@ export class AdminManagerComponent implements OnInit {
     }, error => {
     }, () => {
       this.patternForm.reset();
-      this.adminManagerService.findAll().subscribe(next => {
-        this.listIntent = next;
-      }, error => {
-      }, () => {
-        this.adminManagerService.findTag(this.intent.tag).subscribe(next => {
-          this.intent = next;
-        }, error => {
-        }, () => {
-          this.isTag = false;
-          document.getElementById('id' + this.intent.tag).style.color = 'red';
-        });
-      });
+      this.onLoadDataByTag(this.intent.tag);
+
     });
 
   }
@@ -142,18 +116,7 @@ export class AdminManagerComponent implements OnInit {
     }, error => {
     }, () => {
       this.responseForm.reset();
-      this.adminManagerService.findAll().subscribe(next => {
-        this.listIntent = next;
-      }, error => {
-      }, () => {
-        this.adminManagerService.findTag(this.intent.tag).subscribe(next => {
-          this.intent = next;
-        }, error => {
-        }, () => {
-          this.isTag = false;
-          document.getElementById('id' + this.intent.tag).style.color = 'red';
-        });
-      });
+      this.onLoadDataByTag(this.intent.tag);
     });
   }
 
@@ -170,18 +133,7 @@ export class AdminManagerComponent implements OnInit {
       this.adminManagerService.save(this.intent).subscribe(next => {
       }, error => {
       }, () => {
-        this.adminManagerService.findAll().subscribe(next => {
-          this.listIntent = next;
-        }, error => {
-        }, () => {
-          this.adminManagerService.findTag(this.intent.tag).subscribe(next => {
-            this.intent = next;
-          }, error => {
-          }, () => {
-            this.isTag = false;
-            document.getElementById('id' + this.intent.tag).style.color = 'red';
-          });
-        });
+        this.onLoadDataByTag(this.intent.tag);
       });
     }
   }
@@ -192,18 +144,7 @@ export class AdminManagerComponent implements OnInit {
       this.adminManagerService.save(this.intent).subscribe(next => {
       }, error => {
       }, () => {
-        this.adminManagerService.findAll().subscribe(next => {
-          this.listIntent = next;
-        }, error => {
-        }, () => {
-          this.adminManagerService.findTag(this.intent.tag).subscribe(next => {
-            this.intent = next;
-          }, error => {
-          }, () => {
-            this.isTag = false;
-            document.getElementById('id' + this.intent.tag).style.color = 'red';
-          });
-        });
+        this.onLoadDataByTag(this.intent.tag);
       });
     }
   }
@@ -215,6 +156,22 @@ export class AdminManagerComponent implements OnInit {
     }, error => {
     }, () => {
       this.isAddTag = this.valueIntent != null;
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  onLoadDataByTag(tag: string) {
+    this.adminManagerService.findAll().subscribe(next => {
+      this.listIntent = next;
+    }, error => {
+    }, () => {
+      this.adminManagerService.findTag(tag).subscribe(next => {
+        this.intent = next;
+      }, error => {
+      }, () => {
+        this.isTag = false;
+        document.getElementById('id' + tag).style.color = 'red';
+      });
     });
   }
 }
